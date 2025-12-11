@@ -10,6 +10,10 @@
         padding: 50px;
         text-align: center;
       }
+      header {
+        background: linear-gradient(360deg, white, lightgrey);
+        padding-top: 40px;
+      }
       button {
         background: #2563eb;
         color: white;
@@ -23,25 +27,32 @@
         background: #1d4ed8;
       }
       #products {
-        max-width: 1200px;
+        max-width: auto;
         margin: 0 auto;
         padding: 0;
         text-align: center;
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
       }
-      .single-product {
+      .product-card {
         display: inline-block;
         max-width: 220px;
         padding: 20px;
         margin: 20px;
         border: 4px solid lightgrey;
         border-radius: 10%;
+        box-shadow: 0 24px 40px rgba(0, 0, 0, 0.1);
       }
       .product-image {
         max-width: 200px;
         padding: 10px;
       }
       button {
-        padding: 4px;
+        padding: 8px;
+      }
+      #reset-btn {
+        margin-top: 10px;
       }
       #chorizo-count {
         font-size: 20px;
@@ -66,9 +77,7 @@
       <p>A product rating app</p>
     </header>
     <section id="products">
-      <section class="single-product">
-        Chorizo & Egg Wrap
-        <div id="chorizo-count">0</div>
+      <section class="product-card">
         <img
           class="product-image"
           src="https://www.soulorigin.com.au/cdn/shop/files/Breakfast_Resize_0006_Chorizo_and_Egg_Wrap_3_800x800.jpg?v=1746661210"
@@ -76,10 +85,11 @@
         />
         <button id="chorizo-upvote-btn">Upvote</button>
         <button id="chorizo-downvote-btn">Downvote</button>
+        <h3>Chorizo & Egg Wrap</h3>
+        <p>Chorizo, fried egg, tasty cheese & smoky bbq sauce.</p>
+        <div id="chorizo-count">0</div>
       </section>
-      <section class="single-product">
-        Spicy Crunchy Chicken
-        <div id="spicy-chicken-count">0</div>
+      <section class="product-card">
         <img
           class="product-image"
           src="https://www.soulorigin.com.au/cdn/shop/files/SOBun_1200x1200_SpicyChicken_800x800.jpg?v=1750051053"
@@ -87,10 +97,11 @@
         />
         <button id="spicy-chicken-upvote-btn">Upvote</button>
         <button id="spicy-chicken-downvote-btn">Downvote</button>
+        <h3>Spicy Crunchy Chicken</h3>
+        <p>Fried chicken, cos lettuce, chilli mayo & hot sauce.</p>
+        <div id="spicy-chicken-count">0</div>
       </section>
-      <section class="single-product">
-        Buffalo Schnitzel Slaw
-        <div id="buffalo-count">0</div>
+      <section class="product-card">
         <img
           class="product-image"
           src="https://www.soulorigin.com.au/cdn/shop/files/Buffalo_Schnitzel_Slaw_1200x1200_bbf5592b-2b9c-4b21-8000-39454a104db1_800x800.jpg?v=1729658201"
@@ -98,12 +109,17 @@
         />
         <button id="buffalo-upvote-btn">Upvote</button>
         <button id="buffalo-downvote-btn">Downvote</button>
+        <h3>Buffalo Schnitzel Slaw</h3>
+        <p>Coleslaw, carrot and kale mix, aioli & hot sauce.</p>
+        <div id="buffalo-count">0</div>
       </section>
-      <br />
-      <br />
-      <button id="reset-btn">Reset All</button>
     </section>
+    <h4>Total Votes: <span id="total-votes">0</span></h4>
+    <button id="reset-btn">Reset All</button>
     <script>
+      // Set total votes
+      let totalVotes = 0;
+      let totalVotesDisplay = document.getElementById("total-votes");
       // Chorizo Get Elements + Set Count
       let chorizoCount = 0;
       let chorizoCountDisplay = document.getElementById("chorizo-count");
@@ -112,13 +128,17 @@
       // Chorizo Upvote
       function handleChorizoUpvote() {
         chorizoCount = chorizoCount + 1;
+        totalVotes = totalVotes + 1;
         chorizoCountDisplay.textContent = chorizoCount;
+        totalVotesDisplay.textContent = totalVotes;
       }
       chorizoUpvote.addEventListener("click", handleChorizoUpvote);
       // Chorizo Downvote
       function handleChorizoDownvote() {
         chorizoCount = chorizoCount - 1;
+        totalVotes = totalVotes + 1;
         chorizoCountDisplay.textContent = chorizoCount;
+        totalVotesDisplay.textContent = totalVotes;
       }
       chorizoDownvote.addEventListener("click", handleChorizoDownvote);
 
@@ -136,13 +156,17 @@
       // Spicy Chicken Upvote
       function handleSpicyChickenUpvote() {
         SpicyChickenCount = SpicyChickenCount + 1;
+        totalVotes = totalVotes + 1;
         SpicyChickenCountDisplay.textContent = SpicyChickenCount;
+        totalVotesDisplay.textContent = totalVotes;
       }
       SpicyChickenUpvote.addEventListener("click", handleSpicyChickenUpvote);
       // Spicy Chicken Downvote
       function handleSpicyChickenDownvote() {
         SpicyChickenCount = SpicyChickenCount - 1;
+        totalVotes = totalVotes + 1;
         SpicyChickenCountDisplay.textContent = SpicyChickenCount;
+        totalVotesDisplay.textContent = totalVotes;
       }
       SpicyChickenDownvote.addEventListener(
         "click",
@@ -156,13 +180,17 @@
       // Buffalo Upvote
       function handleBuffaloUpvote() {
         buffaloCount = buffaloCount + 1;
+        totalVotes = totalVotes + 1;
         buffaloCountDisplay.textContent = buffaloCount;
+        totalVotesDisplay.textContent = totalVotes;
       }
       buffaloUpvote.addEventListener("click", handleBuffaloUpvote);
       // Buffalo Downvote
       function handleBuffaloDownvote() {
         buffaloCount = buffaloCount - 1;
+        totalVotes = totalVotes + 1;
         buffaloCountDisplay.textContent = buffaloCount;
+        totalVotesDisplay.textContent = totalVotes;
       }
       buffaloDownvote.addEventListener("click", handleBuffaloDownvote);
 
@@ -175,6 +203,8 @@
         SpicyChickenCountDisplay.textContent = SpicyChickenCount;
         buffaloCount = 0;
         buffaloCountDisplay.textContent = buffaloCount;
+        totalVotes = 0;
+        totalVotesDisplay.textContent = totalVotes;
       }
       resetAll.addEventListener("click", handleResetAll);
     </script>
