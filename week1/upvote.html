@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Upvote Counter</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        padding: 50px;
+        text-align: center;
+      }
+      button {
+        background: #2563eb;
+        color: white;
+        border: none;
+        padding: 15px 30px;
+        font-size: 18px;
+        border-radius: 5px;
+        cursor: pointer;
+      }
+      button:hover {
+        background: #1d4ed8;
+      }
+      #count {
+        font-size: 48px;
+        font-weight: bold;
+        color: #2563eb;
+        margin: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>TaskMaster</h1>
+    <p>A productivity app</p>
+
+    <div id="count">0</div>
+    <button id="upvote-btn">Upvote</button>
+    <button id="reset-btn">Reset</button>
+    <button id="downvote-btn">Downvote</button>
+
+    <script>
+      // Store the count
+      let count = 0;
+
+      // Upvote the count
+      // Get elements
+      let button = document.getElementById("upvote-btn");
+      let countDisplay = document.getElementById("count");
+
+      function handleUpvote() {
+        count = count + 1;
+        countDisplay.textContent = count;
+      }
+
+      button.addEventListener("click", handleUpvote);
+
+      // Reset the count
+      // Get elements
+      let resetButton = document.getElementById("reset-btn");
+      function handleReset() {
+        count = 0;
+        countDisplay.textContent = count;
+      }
+
+      resetButton.addEventListener("click", handleReset);
+
+      // Downvote the count
+      // Get elements
+      let downvoteButton = document.getElementById("downvote-btn");
+      function handleDownvote() {
+        count = count - 1;
+        countDisplay.textContent = count;
+      }
+
+      downvoteButton.addEventListener("click", handleDownvote);
+    </script>
+  </body>
+</html>
